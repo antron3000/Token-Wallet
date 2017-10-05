@@ -1,17 +1,29 @@
-var unique = require('uniq');
+var Web3 = require('web3');
+var web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/wYbAQ0x0FE5CdA81154AfB2EadaafAe3e320127F88F171eDRWhCcYpGOaSK9e'));
+
 
 var data = [1, 2, 2, 3, 4, 5, 5, 5, 6];
 
 
-console.log(unique(data));
 var privateKey;
 
 
-importwallet('moment into resemble brave cover add life candy situate seat crumble lunch');
+importwallet('moment into test brave cover add life candy situate seat crumble lunch');
 
 //importwallet('moment into resemble brave cover add life candy situate seat crumble lunch');
 try2send(privateKey);
 
+web3.eth.getBalance('0x0FE5CdA81154AfB2EadaafAe3e320127F88F171e', function (error, result) {
+    if (!error) {
+      console.log(result.toString());
+      console.log("test");
+    } else {
+      console.error(error);
+    }
+  })
+
+//var balance = web3.eth.getBalance('0x0FE5CdA81154AfB2EadaafAe3e320127F88F171e');
+//console.log(balance);
 
 function try2send(privateKey) {
 
@@ -21,8 +33,8 @@ function try2send(privateKey) {
 
 
   const txParams = {
-    nonce: '0x00',
-    gasPrice: '0x09184e72a0',
+    nonce: '0x10',
+    gasPrice: '0x19184e72a0',
     gasLimit: '0xDF642',
     to: '0x0FE5CdA81154AfB2EadaafAe3e320127F88F171e',
     value: '1000000',
@@ -35,14 +47,9 @@ function try2send(privateKey) {
   tx.sign(privateKey)
   const serializedTx = tx.serialize()
 
-  var Web3 = require('web3');
-  var web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/UsEpQRomKo9VVTLImZed'));
+
    web3.eth.sendSignedTransaction('0x' + serializedTx.toString('hex'))
    .on('receipt', console.log);
-
-
-
-
 
 
 
@@ -66,8 +73,6 @@ function try2send(privateKey) {
  }
 
  function importwallet(mnemonic) {
-
-
 
    const hdkey = require('ethereumjs-wallet/hdkey')
 
